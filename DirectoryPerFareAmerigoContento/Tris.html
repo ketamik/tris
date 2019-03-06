@@ -86,7 +86,7 @@
 console.log(result)
 
 
-var result =    [8,7,8, 4,9,7, 3,4,4]
+var result = [8,7,8, 4,9,7, 3,4,4]
 var winner = false
 var turnoCorrente = 0
 var risTurno= "Croce"
@@ -114,10 +114,10 @@ function checkWinner(){
     (result[0]==result[3] && result[3] == result[6]){
         return winner =true
     }else if 
-        (result[1]==result[4] && result[4] == result[6]){
+        (result[1]==result[4] && result[4] == result[7]){
             return winner =true
     }else if 
-        (result[2]==result[5] && result[5] == result[7]){
+        (result[2]==result[5] && result[5] == result[8]){
             return winner =true
         //+++++++++++++++++++++++++++++++++++
     }else if 
@@ -133,16 +133,14 @@ function checkEndGame(){
     if (turnoCorrente >= 9){
         $('.turno').empty()
 
-        $('.turno').append(
-        `<h1>Non vince nessuno,è patta</h1>`)
+        $('.turno').append( `<h1>Non vince nessuno,è patta</h1>`)
 
     }
 }
 function checkTurno() {
     if (winner == true){ 
-        $('.turno').append(
-        `<h1>${risTurno}, HAI VINTO</h1>`
-        )
+        $('.turno').append( `<h1>${risTurno}, HAI VINTO</h1>` )
+        $('button').attr('disabled','disabled');
     } else {
 
         if (turnoCorrente%2 == 0){ 
@@ -153,6 +151,7 @@ function checkTurno() {
             risTurno = "Cerchio"
             risArray = 0
         }
+
 
         $('.turno').append(
         `<h2>${risTurno}, tocca a te</h2>`
@@ -166,6 +165,8 @@ function checkTurno() {
 $('.item').on('click', event => {
         turnoCorrente ++
     $(event.currentTarget).addClass(""+risTurno+"");
+    
+    $(event.currentTarget).attr('disabled','disabled');
     $('.turno').empty()
     checkWinner()
     checkTurno()
