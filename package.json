@@ -1,0 +1,28 @@
+{
+  "name": "tris",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ketamik/tris.git"
+  },
+  "keywords": [
+    "tris"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ketamik/tris/issues"
+  },
+  "homepage": "https://github.com/ketamik/tris#readme",
+  "dependencies": {
+    "karma": "^4.0.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-html2js-preprocessor": "^1.1.0",
+    "karma-jasmine": "^2.0.1"
+  }
+}
