@@ -4,6 +4,6 @@
 },
 // ...snip...
 'scripts': {
-   'test': './node_modules/.bin/karma start --single-run --browsers PhantomJS'
+   'test': './node_modules/.bin/karma start --browsers Firefox --single-run'
 }
 // ...snip...
