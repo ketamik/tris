@@ -69,8 +69,10 @@
                 <button onclick= "addResult(6)"class="item "></button>
                 <button onclick= "addResult(7)"class="item"></button>
                 <button onclick= "addResult(8)"class="item"></button>
+               
 
         </div>
+        <button onclick= "resetGame()">reset</button>
 <div class="turno">
      
 </div>
@@ -80,6 +82,12 @@
 
 
 <script>
+
+function resetGame(){
+    $('button').removeClass('Cerchio Croce');
+}
+
+
 
 
 
