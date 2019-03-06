@@ -12,7 +12,24 @@
 
 </script>
 <style>
+    .centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
 
+    }
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     button{
         background-color: transparent;
         border: none;
@@ -26,6 +43,13 @@
         margin: 20px;
     }
     .grid-container{
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        /* bring your own prefixes */
+        transform: translate(-50%, -50%);
+        
         width: 600px;
         height: 600px;
         background-image: url("griglia.png");
@@ -53,22 +77,23 @@
 </head>
 
 <body>
+
         <div class="grid-container">
 
-                <button onclick= "addResult(0)" class="item"></button>
-                <button onclick= "addResult(1)"class="item"></button>
-                <button onclick= "addResult(2)"class="item"></button>  
-                <button onclick= "addResult(3)"class="item"></button>
-                <button onclick= "addResult(4)"class="item"></button>
-                <button onclick= "addResult(5)"class="item"></button>
-                <button onclick= "addResult(6)"class="item "></button>
-                <button onclick= "addResult(7)"class="item"></button>
-                <button onclick= "addResult(8)"class="item"></button>
+                <button class="item"></button>
+                <button class="item"></button>
+                <button class="item"></button>  
+                <button class="item"></button>
+                <button class="item"></button>
+                <button class="item"></button>
+                <button class="item "></button>
+                <button class="item"></button>
+                <button class="item"></button>
 
         </div>
-<div class="turno">
+    <div class="turno">
      
-</div>
+    </div>
 
 
 
@@ -80,15 +105,43 @@
 
 
 
-var arrayCurrentResult = [[8,7,8],[4,9,7],[3,4,4]] //matrice del risultato attuale
+var currentResult = [[8,7,8],[4,9,7],[3,4,4]] //matrice del risultato attuale
 
+var someoneWon = null //output della funzione GetWinner
 
+var currentPlayer = 'Cerchio' //giocatore corrente
 
+function GetWinner(currentResult){
 
-var someoneWon = false //output della funzione GetWinner
+    var player = currentPlayer 
 
-function GetWinner(arrayCurrentResult){
     //controlla se qualcuno ha vinto
+    if (currentResult[0][0]==currentResult[0][1] && currentResult[0][1] == currentResult[0][2]){
+        return someoneWon = player
+    } else if 
+        (currentResult[1][0]==currentResult[1][1] && currentResult[1][1] == currentResult[1][2]){
+            return someoneWon = player
+    } else if 
+        (currentResult[2][0]==currentResult[2][1] && currentResult[2][1] == currentResult[2][2]){
+        return someoneWon = player
+        //++++++++++++++++++++++++++++++++
+    }else if 
+        (currentResult[0][0]==currentResult[1][0] && currentResult[1][0] == currentResult[2][0]){
+        return someoneWon = player
+    }else if 
+        (currentResult[0][1]==currentResult[1][1] && currentResult[1][1] == currentResult[2][1]){
+            return someoneWon = player
+    }else if 
+        (currentResult[0][2]==currentResult[1][2] && currentResult[1][2] == currentResult[2][2]){
+            return someoneWon = player
+        //+++++++++++++++++++++++++++++++++++
+    }else if 
+        (currentResult[0][0]==currentResult[1][1] && currentResult[1][1] == currentResult[2][2]){
+            return someoneWon = player
+    }else if 
+        (currentResult[0][2]==currentResult[1][1] && currentResult[1][1] == currentResult[2][0]){
+            return someoneWon = player
+    } else return someoneWon = null
 }
 
 function isValidStep(arrayCurrentResult, x, posx,posy){
@@ -104,9 +157,21 @@ function resetGame(){
     //resettare il DOM 
 }
 
+
 function showWinner(arrayCurrentResult){
     //mostrare sullo schermo se qualcuno ha vinto
+    $('.grid-container').hide()
+
+    $('.turno').append(`
+    
+    <div  class = 'centered' >
+
+        <h1> ${currentPlayer} hai vinto!</h1>
+        <button onclick = 'resetGame()' class = 'btn btn-danger' onclick= "resetGame()"> Rigioca di nuovo </button>
+    
+    </div>`);
 }
+
 
 
 /*
