@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Esercizio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+<script>
+       /* // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCNceKv4lU-D0sJ2j5K33E53hbZDJV03J8",
+            authDomain: "messaggidb.firebaseapp.com",
+            databaseURL: "https://messaggidb.firebaseio.com",
+            projectId: "messaggidb",
+            storageBucket: "messaggidb.appspot.com",
+            messagingSenderId: "352994453925"
+        };
+        
+        firebase.initializeApp(config);
+        
+        var db= firebase.firestore();*/
+
+
+
+
+</script>
+<style>
+
+    button{
+        background-color: transparent;
+        border: none;
+        outline: none;
+        -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    }
+
+    h1 , h2 {
+        text-align: center;
+        margin: 20px;
+    }
+    .grid-container{
+        width: 600px;
+        height: 600px;
+        background-image: url("griglia.png");
+        background-size: cover;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+
+    }
+
+    .Cerchio{
+        background-image: url("cerchio.png");
+        background-size: cover;
+    }
+    .Croce{
+        background-image: url("croce.png");
+        background-size: cover;
+    }
+
+ 
+
+
+</style>
+</head>
+
+<body>
+        <div class="grid-container">
+
+                <button onclick= "addResult(0)" class="item"></button>
+                <button onclick= "addResult(1)"class="item"></button>
+                <button onclick= "addResult(2)"class="item"></button>  
+                <button onclick= "addResult(3)"class="item"></button>
+                <button onclick= "addResult(4)"class="item"></button>
+                <button onclick= "addResult(5)"class="item"></button>
+                <button onclick= "addResult(6)"class="item "></button>
+                <button onclick= "addResult(7)"class="item"></button>
+                <button onclick= "addResult(8)"class="item"></button>
+
+        </div>
+<div class="turno">
+     
+</div>
+
+
+
+
+
+<script>
+
+
+
+console.log(result)
+
+
+var result =    [8,7,8, 4,9,7, 3,4,4]
+var winner = false
+var turnoCorrente = 0
+var risTurno= "Croce"
+var risArray= 1
+$('.turno').append(
+        `<h2>${risTurno},inizia tu</h2>`
+        )
+
+function addResult(el){
+
+result.splice(el, 1 , risArray)
+console.log(result)
+}
+function checkWinner(){
+    if (result[0]==result[1] && result[1] == result[2]){
+        return winner = true
+    } else if 
+        (result[3]==result[4] && result[4] == result[5]){
+            return winner =true
+    } else if 
+    (result[6]==result[7] && result[7] == result[8]){
+        return winner =true
+        //++++++++++++++++++++++++++++++++
+    }else if 
+    (result[0]==result[3] && result[3] == result[6]){
+        return winner =true
+    }else if 
+        (result[1]==result[4] && result[4] == result[6]){
+            return winner =true
+    }else if 
+        (result[2]==result[5] && result[5] == result[7]){
+            return winner =true
+        //+++++++++++++++++++++++++++++++++++
+    }else if 
+        (result[0]==result[4] && result[4] == result[8]){
+            return winner =true
+    }else if 
+        (result[2]==result[4] && result[4] == result[6]){
+            return winner =true
+    } else return winner = false
+         }
+
+function checkEndGame(){
+    if (turnoCorrente >= 9){
+        $('.turno').empty()
+
+        $('.turno').append(
+        `<h1>Non vince nessuno,è patta</h1>`)
+
+    }
+}
+function checkTurno() {
+    if (winner == true){ 
+        $('.turno').append(
+        `<h1>${risTurno}, HAI VINTO</h1>`
+        )
+    } else {
+
+        if (turnoCorrente%2 == 0){ 
+            risTurno = "Croce"
+            risArray = 1
+        }
+        else {
+            risTurno = "Cerchio"
+            risArray = 0
+        }
+
+        $('.turno').append(
+        `<h2>${risTurno}, tocca a te</h2>`
+        )
+
+    }
+        
+}
+
+
+$('.item').on('click', event => {
+        turnoCorrente ++
+    $(event.currentTarget).addClass(""+risTurno+"");
+    $('.turno').empty()
+    checkWinner()
+    checkTurno()
+    checkEndGame()     
+});
+
+</script>
+</body>
+
+</html>
