@@ -1,6 +1,6 @@
-'devDependencies': {
-  'karma': '~0.8'
+"devDependencies": {
+  "karma": "~0.8"
 },
-'scripts': {
-   'test': './node_modules/.bin/karma start --browsers Firefox --single-run'
+"scripts": {
+   "test": "./node_modules/.bin/karma start --browsers Firefox --single-run"
 }
