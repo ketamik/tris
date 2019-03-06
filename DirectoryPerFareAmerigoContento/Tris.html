@@ -4,14 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Esercizio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
 <script>
 
 
@@ -85,9 +80,37 @@
 
 console.log(result)
 
+//matrice del risultato attuale
+var arrayDelRisultatoAttuale = [[8,7,8],[4,9,7],[3,4,4]]
 
-var result = [8,7,8, 4,9,7, 3,4,4]
-var winner = false
+
+//output della funzione GetWinner
+
+var qualcunohavinto = false
+
+function GetWinner(arrayDelRisultatoAttuale){
+    //controlla se qualcuno ha vinto
+}
+
+function isValidStep(arrayDelRisultatoAttuale, x, posx,posy){
+    //controlla se la posizione è già occupata
+}
+
+function setValue (arrayDelRisultatoAttuale){
+    //inserisce nell'array il nuovo elemento
+}
+
+function resetGame(){
+
+    //resettare il DOM 
+}
+
+function showWinner(arrayDelRisultatoAttuale){
+    //mostrare sullo schermo se qualcuno ha vinto
+}
+
+
+/*
 var turnoCorrente = 0
 var risTurno= "Croce"
 var risArray= 1
@@ -171,7 +194,7 @@ $('.item').on('click', event => {
     checkWinner()
     checkTurno()
     checkEndGame()     
-});
+});*/
 
 </script>
 </body>
