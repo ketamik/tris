@@ -74,97 +74,166 @@
 
 <script>
 
-function resetGame(){
-    $('button').removeClass('Cerchio Croce');
-}
+var currentResult = [[8,7,8],[4,9,7],[3,4,4]] //matrice del risultato attuale
 
-console.log(result)
+var someoneWon = null //output della funzione GetWinner
 
+var currentPlayer = 'Cerchio' //giocatore corrente
 
-var result =    [8,7,8, 4,9,7, 3,4,4]
-var winner = false
-var turnoCorrente = 0
-var risTurno= "Croce"
-var risArray= 1
-$('.turno').append(
-        `<h2>${risTurno},inizia tu</h2>`
-)
+function getWinner(currentResult){
 
-function addResult(el){
+    var player = currentPlayer 
 
-result.splice(el, 1 , risArray)
-console.log(result)
-}
-function checkWinner(){
-    if (result[0]==result[1] && result[1] == result[2]){
-        return winner = true
+    //controlla se qualcuno ha vinto
+    if (currentResult[0][0]==currentResult[0][1] && currentResult[0][1] == currentResult[0][2]){
+        return someoneWon = player
     } else if 
-        (result[3]==result[4] && result[4] == result[5]){
-            return winner =true
+        (currentResult[1][0]==currentResult[1][1] && currentResult[1][1] == currentResult[1][2]){
+            return someoneWon = player
     } else if 
-    (result[6]==result[7] && result[7] == result[8]){
-        return winner =true
+        (currentResult[2][0]==currentResult[2][1] && currentResult[2][1] == currentResult[2][2]){
+        return someoneWon = player
         //++++++++++++++++++++++++++++++++
     }else if 
-    (result[0]==result[3] && result[3] == result[6]){
-        return winner =true
+        (currentResult[0][0]==currentResult[1][0] && currentResult[1][0] == currentResult[2][0]){
+        return someoneWon = player
     }else if 
-        (result[1]==result[4] && result[4] == result[6]){
-            return winner =true
+        (currentResult[0][1]==currentResult[1][1] && currentResult[1][1] == currentResult[2][1]){
+            return someoneWon = player
     }else if 
-        (result[2]==result[5] && result[5] == result[7]){
-            return winner =true
+        (currentResult[0][2]==currentResult[1][2] && currentResult[1][2] == currentResult[2][2]){
+            return someoneWon = player
         //+++++++++++++++++++++++++++++++++++
     }else if 
-        (result[0]==result[4] && result[4] == result[8]){
-            return winner =true
+        (currentResult[0][0]==currentResult[1][1] && currentResult[1][1] == currentResult[2][2]){
+            return someoneWon = player
     }else if 
-        (result[2]==result[4] && result[4] == result[6]){
-            return winner =true
-    } else return winner = false
-         }
-
-function checkEndGame(){
-    if (turnoCorrente >= 9){
-        $('.turno').empty()
-
-        $('.turno').append(
-        `<h1>Non vince nessuno,è patta</h1>`)
-
-    }
+        (currentResult[0][2]==currentResult[1][1] && currentResult[1][1] == currentResult[2][0]){
+            return someoneWon = player
+    } else return someoneWon = null
 }
-function checkTurno() {
-    if (winner == true){ 
-        $('.turno').append(
-        `<h1>${risTurno}, HAI VINTO</h1>`
-        )
-    } else {
 
-        if (turnoCorrente%2 == 0){ 
-            risTurno = "Croce"
-            risArray = 1
-        }
-        else {
-            risTurno = "Cerchio"
-            risArray = 0
-        }
+function isValidStep(arrayCurrentResult, x, posx,posy){
+    //controlla se la posizione è già occupata
+}
 
-        $('.turno').append(
-        `<h2>${risTurno}, tocca a te</h2>`
-        )
+function setValue (arrayCurrentResult){
+    //inserisce nell'array il nuovo elemento
+}
 
-    }
+function resetGame(){
+
+    //resettare il DOM 
+}
+
+
+function showWinner(arrayCurrentResult){
+    //mostrare sullo schermo se qualcuno ha vinto
+    $('.grid-container').hide()
+
+    $('.turno').append(`
+    
+    <div  class = 'centered' >
+
+        <h1> ${currentPlayer} hai vinto!</h1>
+        <button onclick = 'resetGame()' class = 'btn btn-danger' onclick= "resetGame()"> Rigioca di nuovo </button>
+    
+    </div>`);
+}
+
+
+
+// function resetGame(){
+//     $('button').removeClass('Cerchio Croce');
+// }
+
+// console.log(result)
+
+
+// var result =    [8,7,8, 4,9,7, 3,4,4]
+// var winner = false
+// var turnoCorrente = 0
+// var risTurno= "Croce"
+// var risArray= 1
+// $('.turno').append(
+//         `<h2>${risTurno},inizia tu</h2>`
+// )
+
+// function addResult(el){
+
+// result.splice(el, 1 , risArray)
+// console.log(result)
+// }
+// function checkWinner(){
+//     if (result[0]==result[1] && result[1] == result[2]){
+//         return winner = true
+//     } else if 
+//         (result[3]==result[4] && result[4] == result[5]){
+//             return winner =true
+//     } else if 
+//     (result[6]==result[7] && result[7] == result[8]){
+//         return winner =true
+//         //++++++++++++++++++++++++++++++++
+//     }else if 
+//     (result[0]==result[3] && result[3] == result[6]){
+//         return winner =true
+//     }else if 
+//         (result[1]==result[4] && result[4] == result[6]){
+//             return winner =true
+//     }else if 
+//         (result[2]==result[5] && result[5] == result[7]){
+//             return winner =true
+//         //+++++++++++++++++++++++++++++++++++
+//     }else if 
+//         (result[0]==result[4] && result[4] == result[8]){
+//             return winner =true
+//     }else if 
+//         (result[2]==result[4] && result[4] == result[6]){
+//             return winner =true
+//     } else return winner = false
+//          }
+
+// function checkEndGame(){
+//     if (turnoCorrente >= 9){
+//         $('.turno').empty()
+
+//         $('.turno').append(
+//         `<h1>Non vince nessuno,è patta</h1>`)
+
+//     }
+// }
+// function checkTurno() {
+//     if (winner == true){ 
+//         $('.turno').append(
+//         `<h1>${risTurno}, HAI VINTO</h1>`
+//         )
+//     } else {
+
+//         if (turnoCorrente%2 == 0){ 
+//             risTurno = "Croce"
+//             risArray = 1
+//         }
+//         else {
+//             risTurno = "Cerchio"
+//             risArray = 0
+//         }
+
+//         $('.turno').append(
+//         `<h2>${risTurno}, tocca a te</h2>`
+//         )
+
+//     }
         
-}
+// }
 
-$('.item').on('click', event => {
-        turnoCorrente ++
-    $(event.currentTarget).addClass(""+risTurno+"");
-    $('.turno').empty()
-    checkWinner()
-    checkTurno()
-    checkEndGame()     
-});
+// $('.item').on('click', event => {
+//         turnoCorrente ++
+//     $(event.currentTarget).addClass(""+risTurno+"");
+//     $('.turno').empty()
+//     checkWinner()
+//     checkTurno()
+//     checkEndGame()     
+// });
 
 </script>
 </body>
