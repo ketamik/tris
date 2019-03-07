@@ -71,8 +71,6 @@
     }
 
  
-
-
 </style>
 </head>
 
@@ -80,23 +78,10 @@
 
         <div class="grid-container">
 
-        <!--    <button onclick = 'setValue()' class="item"></button>
-                <button onclick = 'setValue()' class="item"></button>
-                <button onclick = 'setValue()' class="item"></button>  
-                <button onclick = 'setValue()' class="item"></button>
-                <button onclick = 'setValue()' class="item"></button>
-                <button onclick = 'setValue()' class="item"></button>
-                <button onclick = 'setValue()' class="item "></button>
-                <button onclick = 'setValue()' class="item"></button>
-                <button onclick = 'setValue()' class="item"></button> -->
-
         </div>
     <div class="turno">
      
     </div>
-
-
-
 
 
 <script>
@@ -138,10 +123,10 @@ function GetWinner(currentResult){
 
 
  
-    var turni = 0;
+
 function isValidStep(CurrentResult, x, posx,posy){
     //controlla se la posizione è già occupata
-    turni++;
+    turn++;
     /*
     if(posx || posy != null)
     {
@@ -182,18 +167,7 @@ function setValue (currentResult, posx , posy){
         }
     }
 
-
     console.log(currentResult)
-   /* var elem = ''
-
-    if (turn%2==0) {
-      elem = 'cerchio'
-    } else elem = 'croce'
-
-    turn ++
-    $(event.currentTarget).addClass(elem); //aggiunge l'elemento
-    $(event.currentTarget).attr('disabled','disabled'); //rende disabilitati il bottone appena cliccato
-    console.log($(event.currentTarget)) */
 }
 
 setValue(currentResult)
@@ -216,53 +190,6 @@ function resetGame(){
 }
 
 
-
-
-
-/*
-function checkEndGame(){
-    if (turnoCorrente >= 9){
-        $('.turno').empty()
-
-        $('.turno').append( `<h1>Non vince nessuno,è patta</h1>`)
-
-    }
-}
-function checkTurno() {
-    if (winner == true){ 
-        $('.turno').append( `<h1>${risTurno}, HAI VINTO</h1>` )
-        $('button').attr('disabled','disabled');
-    } else {
-
-        if (turnoCorrente%2 == 0){ 
-            risTurno = "Croce"
-            risArray = 1
-        }
-        else {
-            risTurno = "Cerchio"
-            risArray = 0
-        }
-
-
-        $('.turno').append(
-        `<h2>${risTurno}, tocca a te</h2>`
-        )
-
-    }
-        
-}
-
-
-$('.item').on('click', event => {
-        turnoCorrente ++
-    $(event.currentTarget).addClass(""+risTurno+"");
-    
-    $(event.currentTarget).attr('disabled','disabled');
-    $('.turno').empty()
-    checkWinner()
-    checkTurno()
-    checkEndGame()     
-});*/
 
 </script>
 </body>
