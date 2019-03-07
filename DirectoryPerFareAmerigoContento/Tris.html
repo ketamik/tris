@@ -126,16 +126,13 @@ function GetWinner(currentResult){
 }
 
 function isValidStep(currentResult, x, posx,posy){
-    //controlla se la posizione è già occupata
- 
-
-
+    //controlla se la posizione è già occupata 
 }
 
 function setValue (currentResult, posx , posy){
         //inserisce nell'array il nuovo elemento
-        
-/*
+
+
     var elem 
 
     (turn%2==0)? elem = 'cerchio': elem = 'croce'
@@ -148,15 +145,14 @@ function setValue (currentResult, posx , posy){
         for (let j = 0; j < currentResult[i].length; j++) {            
             console.log(i +' '+j)
             if (currentResult[i][j] == 'x'){
-                $('.grid-container').append( `<button onclick = 'setValue(,${i},${j})' class="item croce"></button>` );
+                $('.grid-container').append( `<button onclick = 'setValue(${i},${j})' class="item croce"></button>` );
             } else if (currentResult[i][j]=='o'){
-                $('.grid-container').append( `<button onclick = 'setValue(,${i},${j})' class="item cerchio"></button>` );
+                $('.grid-container').append( `<button onclick = 'setValue(${i},${j})' class="item cerchio"></button>` );
             } else {
-                $('.grid-container').append( `<button onclick = 'setValue(,${i},${j})' class="item"></button>` );
+                $('.grid-container').append( `<button onclick = 'setValue(${i},${j})' class="item"></button>` );
             }
         }
     }
-*/
 
 
     console.log(currentResult)
