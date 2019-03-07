@@ -105,7 +105,7 @@
 var turn = 0    //turno corrente
 
 
-var currentResult = [[null,null,null],[null,null,null],['x',null,null]]    //matrice del risultato attuale
+var currentResult = [['x',null,null],['x',null,null],['x',null,null]]    //matrice del risultato attuale
 
 var someoneWon = null   //output della funzione GetWinner
 
@@ -113,17 +113,30 @@ var currentPlayer = 'Cerchio'   //giocatore corrente
 
 function GetWinner(currentResult){
 
-    var player = currentPlayer 
+   if (currentResult[0][0] + currentResult[0][1] + currentResult[0][2] == 'xxx' ||  
+   currentResult[1][0] + currentResult[1][1] + currentResult[1][2] == 'xxx' || 
+   currentResult[2][0] + currentResult[2][1] + currentResult[2][2] == 'xxx' ||
+   
+   currentResult[0][0] + currentResult[1][0] + currentResult[2][0] == 'xxx' ||
+   currentResult[0][1] + currentResult[1][1] + currentResult[2][1] == 'xxx' ||
+   currentResult[0][2] + currentResult[1][2] + currentResult[2][2] == 'xxx' ||
 
-    //controlla se qualcuno ha vinto
-    if (currentResult[0][0]==currentResult[0][1] && currentResult[0][1] == currentResult[0][2] || currentResult[1][0]==currentResult[1][1] && currentResult[1][1] == currentResult[1][2] || currentResult[2][0]==currentResult[2][1] && currentResult[2][1] == currentResult[2][2] ){ return someoneWon = player
-        //++++++++++++++++++++++++++++++++
-    }else if (currentResult[0][0]==currentResult[1][0] && currentResult[1][0] == currentResult[2][0] || currentResult[0][1]==currentResult[1][1] && currentResult[1][1] == currentResult[2][1] || currentResult[0][2]==currentResult[1][2] && currentResult[1][2] == currentResult[2][2]){
-        return someoneWon = player
-        //+++++++++++++++++++++++++++++++++++
-    }else if (currentResult[0][0]==currentResult[1][1] && currentResult[1][1] == currentResult[2][2] || currentResult[0][2]==currentResult[1][1] && currentResult[1][1] == currentResult[2][0]) {return someoneWon = player
-    } else return someoneWon = null
+   currentResult[0][0] + currentResult[1][1] + currentResult[2][2] == 'xxx' ||
+   currentResult[0][2] + currentResult[1][1] + currentResult[0][2] == 'xxx' ){ return someoneWon = 'Croce'} 
+    
+    if (currentResult[0][0] + currentResult[0][1] + currentResult[0][2] == 'ooo' ||  
+   currentResult[1][0] + currentResult[1][1] + currentResult[1][2] == 'ooo' || 
+   currentResult[2][0] + currentResult[2][1] + currentResult[2][2] == 'ooo' ||
+   
+   currentResult[0][0] + currentResult[1][0] + currentResult[2][0] == 'ooo' ||
+   currentResult[0][1] + currentResult[1][1] + currentResult[2][1] == 'ooo' ||
+   currentResult[0][2] + currentResult[1][2] + currentResult[2][2] == 'ooo' ||
+
+   currentResult[0][0] + currentResult[1][1] + currentResult[2][2] == 'ooo' ||
+   currentResult[0][2] + currentResult[1][1] + currentResult[0][2] == 'ooo' ){ return someoneWon = 'Cerchio'}
 }
+
+
 
 function isValidStep(currentResult, x, posx,posy){
     //controlla se la posizione è già occupata 
@@ -132,14 +145,12 @@ function isValidStep(currentResult, x, posx,posy){
 function setValue (currentResult, posx , posy){
         //inserisce nell'array il nuovo elemento
 
-
+    
     var elem 
 
     (turn%2==0)? elem = 'cerchio': elem = 'croce'
 
-    currentResult.splice([posx][posy],1,elem);
-
-
+    //currentResult.splice([posx][posy],1,elem);
 
     for (let i = 0; i < currentResult.length; i++) {
         for (let j = 0; j < currentResult[i].length; j++) {            
@@ -170,15 +181,9 @@ function setValue (currentResult, posx , posy){
 
 setValue(currentResult)
 
-
-function resetGame(){
-
-    //resettare il DOM 
-}
-
-
-function showWinner(arrayCurrentResult){
+function showWinner(){
     //mostrare sullo schermo se qualcuno ha vinto
+
     $('.grid-container').hide()
     $('.turno').append(`    
     <div  class = 'centered' >
@@ -188,49 +193,16 @@ function showWinner(arrayCurrentResult){
 }
 
 
+function resetGame(){
+
+    //resettare il DOM 
+}
+
+
+
+
 
 /*
-var turnoCorrente = 0
-var risTurno= "Croce"
-var risArray= 1
-$('.turno').append(
-        `<h2>${risTurno},inizia tu</h2>`
-        )
-
-function addResult(el){
-
-result.splice(el, 1 , risArray)
-console.log(result)
-}
-function checkWinner(){
-    if (result[0]==result[1] && result[1] == result[2]){
-        return winner = true
-    } else if 
-        (result[3]==result[4] && result[4] == result[5]){
-            return winner =true
-    } else if 
-    (result[6]==result[7] && result[7] == result[8]){
-        return winner =true
-        //++++++++++++++++++++++++++++++++
-    }else if 
-    (result[0]==result[3] && result[3] == result[6]){
-        return winner =true
-    }else if 
-        (result[1]==result[4] && result[4] == result[7]){
-            return winner =true
-    }else if 
-        (result[2]==result[5] && result[5] == result[8]){
-            return winner =true
-        //+++++++++++++++++++++++++++++++++++
-    }else if 
-        (result[0]==result[4] && result[4] == result[8]){
-            return winner =true
-    }else if 
-        (result[2]==result[4] && result[4] == result[6]){
-            return winner =true
-    } else return winner = false
-         }
-
 function checkEndGame(){
     if (turnoCorrente >= 9){
         $('.turno').empty()
