@@ -143,9 +143,27 @@ function GetWinner(currentResult){
             return someoneWon = player
     } else return someoneWon = null
 }
-
-function isValidStep(arrayCurrentResult, x, posx,posy){
+var turni = 0;
+function isValidStep(CurrentResult, x, posx,posy){
     //controlla se la posizione è già occupata
+    turni++;
+    /*
+    if(posx || posy != null)
+    {
+        $('.turno').empty()
+        $('.turno').append( `<h1>Posizione occupata</h1>`)
+    }
+    */
+                if(GetWinner(CurrentResult) != null)
+                {
+                    showWinner()
+                }else if(turni === 0)
+                {
+                    $('.turno').empty()
+                    $('.turno').append(` <div class="centered"> <h1>Non vince nessuno,è patta</h1><button onclick = 'resetGame()' class = 'btn btn-danger' onclick= "resetGame()"> Rigioca di nuovo </button></div>`)
+                }
+   
+   
 }
 
 function setValue (arrayCurrentResult){
