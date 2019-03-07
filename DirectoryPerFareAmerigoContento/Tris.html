@@ -61,11 +61,11 @@
 
     }
 
-    .Cerchio{
+    .cerchio{
         background-image: url("cerchio.png");
         background-size: cover;
     }
-    .Croce{
+    .croce{
         background-image: url("croce.png");
         background-size: cover;
     }
@@ -80,15 +80,15 @@
 
         <div class="grid-container">
 
-                <button class="item"></button>
-                <button class="item"></button>
-                <button class="item"></button>  
-                <button class="item"></button>
-                <button class="item"></button>
-                <button class="item"></button>
-                <button class="item "></button>
-                <button class="item"></button>
-                <button class="item"></button>
+        <!--    <button onclick = 'setValue()' class="item"></button>
+                <button onclick = 'setValue()' class="item"></button>
+                <button onclick = 'setValue()' class="item"></button>  
+                <button onclick = 'setValue()' class="item"></button>
+                <button onclick = 'setValue()' class="item"></button>
+                <button onclick = 'setValue()' class="item"></button>
+                <button onclick = 'setValue()' class="item "></button>
+                <button onclick = 'setValue()' class="item"></button>
+                <button onclick = 'setValue()' class="item"></button> -->
 
         </div>
     <div class="turno">
@@ -102,55 +102,78 @@
 <script>
 
 
+var turn = 0    //turno corrente
 
 
+var currentResult = [[null,null,null],[null,null,null],['x',null,null]]    //matrice del risultato attuale
 
-var currentResult = [[8,7,8],[4,9,7],[3,4,4]] //matrice del risultato attuale
+var someoneWon = null   //output della funzione GetWinner
 
-var someoneWon = null //output della funzione GetWinner
-
-var currentPlayer = 'Cerchio' //giocatore corrente
+var currentPlayer = 'Cerchio'   //giocatore corrente
 
 function GetWinner(currentResult){
 
     var player = currentPlayer 
 
     //controlla se qualcuno ha vinto
-    if (currentResult[0][0]==currentResult[0][1] && currentResult[0][1] == currentResult[0][2]){
-        return someoneWon = player
-    } else if 
-        (currentResult[1][0]==currentResult[1][1] && currentResult[1][1] == currentResult[1][2]){
-            return someoneWon = player
-    } else if 
-        (currentResult[2][0]==currentResult[2][1] && currentResult[2][1] == currentResult[2][2]){
-        return someoneWon = player
+    if (currentResult[0][0]==currentResult[0][1] && currentResult[0][1] == currentResult[0][2] || currentResult[1][0]==currentResult[1][1] && currentResult[1][1] == currentResult[1][2] || currentResult[2][0]==currentResult[2][1] && currentResult[2][1] == currentResult[2][2] ){ return someoneWon = player
         //++++++++++++++++++++++++++++++++
-    }else if 
-        (currentResult[0][0]==currentResult[1][0] && currentResult[1][0] == currentResult[2][0]){
+    }else if (currentResult[0][0]==currentResult[1][0] && currentResult[1][0] == currentResult[2][0] || currentResult[0][1]==currentResult[1][1] && currentResult[1][1] == currentResult[2][1] || currentResult[0][2]==currentResult[1][2] && currentResult[1][2] == currentResult[2][2]){
         return someoneWon = player
-    }else if 
-        (currentResult[0][1]==currentResult[1][1] && currentResult[1][1] == currentResult[2][1]){
-            return someoneWon = player
-    }else if 
-        (currentResult[0][2]==currentResult[1][2] && currentResult[1][2] == currentResult[2][2]){
-            return someoneWon = player
         //+++++++++++++++++++++++++++++++++++
-    }else if 
-        (currentResult[0][0]==currentResult[1][1] && currentResult[1][1] == currentResult[2][2]){
-            return someoneWon = player
-    }else if 
-        (currentResult[0][2]==currentResult[1][1] && currentResult[1][1] == currentResult[2][0]){
-            return someoneWon = player
+    }else if (currentResult[0][0]==currentResult[1][1] && currentResult[1][1] == currentResult[2][2] || currentResult[0][2]==currentResult[1][1] && currentResult[1][1] == currentResult[2][0]) {return someoneWon = player
     } else return someoneWon = null
 }
 
-function isValidStep(arrayCurrentResult, x, posx,posy){
+function isValidStep(currentResult, x, posx,posy){
     //controlla se la posizione è già occupata
+ 
+
+
 }
 
-function setValue (arrayCurrentResult){
-    //inserisce nell'array il nuovo elemento
+function setValue (currentResult, posx , posy){
+        //inserisce nell'array il nuovo elemento
+        
+/*
+    var elem 
+
+    (turn%2==0)? elem = 'cerchio': elem = 'croce'
+
+    currentResult.splice([posx][posy],1,elem);
+
+
+
+    for (let i = 0; i < currentResult.length; i++) {
+        for (let j = 0; j < currentResult[i].length; j++) {            
+            console.log(i +' '+j)
+            if (currentResult[i][j] == 'x'){
+                $('.grid-container').append( `<button onclick = 'setValue(,${i},${j})' class="item croce"></button>` );
+            } else if (currentResult[i][j]=='o'){
+                $('.grid-container').append( `<button onclick = 'setValue(,${i},${j})' class="item cerchio"></button>` );
+            } else {
+                $('.grid-container').append( `<button onclick = 'setValue(,${i},${j})' class="item"></button>` );
+            }
+        }
+    }
+*/
+
+
+    console.log(currentResult)
+   /* var elem = ''
+
+    if (turn%2==0) {
+      elem = 'cerchio'
+    } else elem = 'croce'
+
+    turn ++
+    $(event.currentTarget).addClass(elem); //aggiunge l'elemento
+    $(event.currentTarget).attr('disabled','disabled'); //rende disabilitati il bottone appena cliccato
+    console.log($(event.currentTarget)) */
 }
+
+setValue(currentResult)
+
 
 function resetGame(){
 
@@ -161,14 +184,10 @@ function resetGame(){
 function showWinner(arrayCurrentResult){
     //mostrare sullo schermo se qualcuno ha vinto
     $('.grid-container').hide()
-
-    $('.turno').append(`
-    
+    $('.turno').append(`    
     <div  class = 'centered' >
-
         <h1> ${currentPlayer} hai vinto!</h1>
-        <button onclick = 'resetGame()' class = 'btn btn-danger' onclick= "resetGame()"> Rigioca di nuovo </button>
-    
+        <button onclick = 'resetGame()' class = 'btn btn-danger' onclick= "resetGame()"> <h1>Gioca di nuovo </h1></button>    
     </div>`);
 }
 
