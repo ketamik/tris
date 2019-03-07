@@ -90,7 +90,7 @@
 var turn = 0    //turno corrente
 
 
-var currentResult = [[null,null,null],[null,null,null],[null,null,null]]    //matrice del risultato attuale
+var currentResult = [['x',null,null],['x',null,null],['x',null,null]]    //matrice del risultato attuale
 
 var someoneWon = null   //output della funzione GetWinner
 
@@ -98,75 +98,80 @@ var currentPlayer = 'Cerchio'   //giocatore corrente
 
 function GetWinner(currentResult){
 
-   if (currentResult[0][0] + currentResult[0][1] + currentResult[0][2] == 'CroceCroceCroce' ||  
-   currentResult[1][0] + currentResult[1][1] + currentResult[1][2] == 'CroceCroceCroce' || 
-   currentResult[2][0] + currentResult[2][1] + currentResult[2][2] == 'CroceCroceCroce' ||
+   if (currentResult[0][0] + currentResult[0][1] + currentResult[0][2] == 'xxx' ||  
+   currentResult[1][0] + currentResult[1][1] + currentResult[1][2] == 'xxx' || 
+   currentResult[2][0] + currentResult[2][1] + currentResult[2][2] == 'xxx' ||
    
-   currentResult[0][0] + currentResult[1][0] + currentResult[2][0] == 'CroceCroceCroce' ||
-   currentResult[0][1] + currentResult[1][1] + currentResult[2][1] == 'CroceCroceCroce' ||
-   currentResult[0][2] + currentResult[1][2] + currentResult[2][2] == 'CroceCroceCroce' ||
+   currentResult[0][0] + currentResult[1][0] + currentResult[2][0] == 'xxx' ||
+   currentResult[0][1] + currentResult[1][1] + currentResult[2][1] == 'xxx' ||
+   currentResult[0][2] + currentResult[1][2] + currentResult[2][2] == 'xxx' ||
 
-   currentResult[0][0] + currentResult[1][1] + currentResult[2][2] == 'CroceCroceCroce' ||
-   currentResult[0][2] + currentResult[1][1] + currentResult[0][2] == 'CroceCroceCroce' ){ return someoneWon = 'Croce'} 
+   currentResult[0][0] + currentResult[1][1] + currentResult[2][2] == 'xxx' ||
+   currentResult[0][2] + currentResult[1][1] + currentResult[0][2] == 'xxx' ){ return someoneWon = 'Croce'} 
     
-    if (currentResult[0][0] + currentResult[0][1] + currentResult[0][2] == 'CerchioCerchioCerchio' ||  
-   currentResult[1][0] + currentResult[1][1] + currentResult[1][2] == 'CerchioCerchioCerchio' || 
-   currentResult[2][0] + currentResult[2][1] + currentResult[2][2] == 'CerchioCerchioCerchio' ||
+    if (currentResult[0][0] + currentResult[0][1] + currentResult[0][2] == 'ooo' ||  
+   currentResult[1][0] + currentResult[1][1] + currentResult[1][2] == 'ooo' || 
+   currentResult[2][0] + currentResult[2][1] + currentResult[2][2] == 'ooo' ||
    
-   currentResult[0][0] + currentResult[1][0] + currentResult[2][0] == 'CerchioCerchioCerchio' ||
-   currentResult[0][1] + currentResult[1][1] + currentResult[2][1] == 'CerchioCerchioCerchio' ||
-   currentResult[0][2] + currentResult[1][2] + currentResult[2][2] == 'CerchioCerchioCerchio' ||
+   currentResult[0][0] + currentResult[1][0] + currentResult[2][0] == 'ooo' ||
+   currentResult[0][1] + currentResult[1][1] + currentResult[2][1] == 'ooo' ||
+   currentResult[0][2] + currentResult[1][2] + currentResult[2][2] == 'ooo' ||
 
-   currentResult[0][0] + currentResult[1][1] + currentResult[2][2] == 'CerchioCerchioCerchio' ||
-   currentResult[0][2] + currentResult[1][1] + currentResult[0][2] == 'CerchioCerchioCerchio' ){ return someoneWon = 'Cerchio'}
+   currentResult[0][0] + currentResult[1][1] + currentResult[2][2] == 'ooo' ||
+   currentResult[0][2] + currentResult[1][1] + currentResult[0][2] == 'ooo' ){ return someoneWon = 'Cerchio'}
 }
 
-function isValidStep(CurrentResult,posx,posy){
+
+ 
+
+function isValidStep(CurrentResult, x, posx,posy){
     //controlla se la posizione è già occupata
-
-    if(currentResult[posx][posy] != null)
-    {    $('.turno').empty()
-        $('.turno').append( `<h1>Posizione occupata</h1>`)
-
-    } else if (GetWinner(CurrentResult) != null)
-            {showWinner()
-    }else if(turn ==9 )
+    turn++;
+    /*
+    if(posx || posy != null)
     {
         $('.turno').empty()
-        $('.turno').append(` <div class="centered"> 
-            <h1>Non vince nessuno,è patta</h1>
-            <button onclick = 'resetGame()' class = 'btn btn-danger' onclick= "resetGame()"> Rigioca di nuovo </button>
-            </div>`)
-    } else {    
-        setValue(currentResult, posx,posy)
-        if (GetWinner(CurrentResult) != null)
-            {showWinner()}
+        $('.turno').append( `<h1>Posizione occupata</h1>`)
     }
+    */
+                if(GetWinner(CurrentResult) != null)
+                {
+                    showWinner()
+                }else if(turni === 0)
+                {
+                    $('.turno').empty()
+                    $('.turno').append(` <div class="centered"> <h1>Non vince nessuno,è patta</h1><button onclick = 'resetGame()' class = 'btn btn-danger' onclick= "resetGame()"> Rigioca di nuovo </button></div>`)
+                }
 }
 
-    
 function setValue (currentResult, posx , posy){
-    //inserisce nell'array il nuovo elemento
-    var elem 
-    (turn%2==0)? elem = 'Croce': elem = 'Cerchio'
-    if (turn!=0) currentResult[posx][posy] = elem
-    currentPlayer= elem
+        //inserisce nell'array il nuovo elemento
 
-    $('.grid-container').empty()
+    
+    var elem 
+
+    (turn%2==0)? elem = 'cerchio': elem = 'croce'
+
+    //currentResult.splice([posx][posy],1,elem);
 
     for (let i = 0; i < currentResult.length; i++) {
         for (let j = 0; j < currentResult[i].length; j++) {            
-            if (currentResult[i][j] == 'Croce'){
-                $('.grid-container').append( `<button onclick = 'clicca(currentResult,${i},${j})' class="item croce"></button>` );
-            } else if (currentResult[i][j]=='Cerchio'){
-                $('.grid-container').append( `<button onclick = 'clicca(currentResult,${i},${j})' class="item cerchio"></button>` );
+            console.log(i +' '+j)
+            if (currentResult[i][j] == 'x'){
+                $('.grid-container').append( `<button onclick = 'setValue(${i},${j})' class="item croce"></button>` );
+            } else if (currentResult[i][j]=='o'){
+                $('.grid-container').append( `<button onclick = 'setValue(${i},${j})' class="item cerchio"></button>` );
             } else {
-                $('.grid-container').append( `<button onclick = 'clicca(currentResult,${i},${j})' class="item"></button>` );
+                $('.grid-container').append( `<button onclick = 'setValue(${i},${j})' class="item"></button>` );
             }
         }
     }
-    turn++
+
+    console.log(currentResult)
 }
+
+setValue(currentResult)
+
 function showWinner(){
     //mostrare sullo schermo se qualcuno ha vinto
 
@@ -179,13 +184,10 @@ function showWinner(){
 }
 
 
-function clicca (currentResult, posx , posy){
+function resetGame(){
 
-    isValidStep(currentResult,posx,posy)
-    console.log(currentResult)
+    //resettare il DOM 
 }
-
-setValue (currentResult)
 
 
 
