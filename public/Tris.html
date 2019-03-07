@@ -14,10 +14,8 @@
     <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
 <script>
 
-
 </script>
 <style>
-
     button{
         background-color: transparent;
         border: none;
@@ -25,7 +23,6 @@
         -webkit-font-smoothing: inherit;
         -moz-osx-font-smoothing: inherit;
     }
-
     h1 , h2 {
         text-align: center;
         margin: 20px;
@@ -51,9 +48,6 @@
         background-size: cover;
     }
 
- 
-
-
 </style>
 </head>
 
@@ -78,18 +72,11 @@
 </div>
 
 
-
-
-
 <script>
 
 function resetGame(){
     $('button').removeClass('Cerchio Croce');
 }
-
-
-
-
 
 console.log(result)
 
@@ -101,7 +88,7 @@ var risTurno= "Croce"
 var risArray= 1
 $('.turno').append(
         `<h2>${risTurno},inizia tu</h2>`
-        )
+)
 
 function addResult(el){
 
@@ -170,7 +157,6 @@ function checkTurno() {
         
 }
 
-
 $('.item').on('click', event => {
         turnoCorrente ++
     $(event.currentTarget).addClass(""+risTurno+"");
@@ -182,5 +168,4 @@ $('.item').on('click', event => {
 
 </script>
 </body>
-
 </html>
